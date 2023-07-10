@@ -1,0 +1,85 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.form {
+  display: grid;
+  gap: 10px;
+}
+
+
+
+
+label {
+  font-weight: 500;
+}
+
+
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  
+}
+
+.container__technique{
+  display: flex;
+  flex-direction: column;
+  
+  
+}
+.technique{
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 4px;
+ 
+  
+}
+
+
+
+.container__button {
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+ gap: 10px;
+
+  
+}
+
+.container button{
+  border-radius: 4px;
+  background-color: #45a049;
+  color:white;
+  padding: 10px 20px;
+  width: 105%;
+  border: none;
+  cursor: pointer;
+  
+}
+
+button:hover {
+  background-color: #45a049;
+  transition: all 0.5s;
+}
+
+.app-name {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+  

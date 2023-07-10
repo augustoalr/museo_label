@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./styles.css">
+    <title>Generador de rótulos</title>
+</head>
+
+<body>
+    <main class="container" id="HTMLtoPDF">
+        <h1 class="app-name">MuseoLabel 1.0</h1>
+
+        <form class="form">
+            <div>
+                <label for="author">Autor:</label>
+                <input type="text" id="author" name="author" oninput="capitalizeFirstLetter(this)">
+            </div>
+            
+            <div>
+                <label for="title">Título:</label>
+                <input type="text" id="title" name="title" oninput="capitalizeFirstLetter(this)">
+            </div>
+            <div>
+                <label for="date">Fecha:</label>
+                <input type="number" id="date" name="date">
+            </div>
+            <div class="container__technique">
+                <label for="technique">Técnica:</label>
+                <select name="technique" id="technique" class="technique">
+                    <option value="">Seleccionar técnica</option>
+                    <option value="Óleo sobre tela">Óleo sobre tela</option>
+                    <option value="Acrílico">Acrílico</option>
+                    <option value="Serigrafía">Serigrafía</option>
+                    <option value="Lápiz">Lápiz</option>
+                    <option value="Litografía">Litografía</option>
+                </select>
+                <!-- <input type="text" id="technique" name="technique" oninput="capitalizeFirstLetter(this)" > -->
+            </div>
+            <div>
+                <label for="measurements">Medidas:</label>
+                <input type="text" id="measurements" name="measurements">
+            </div>
+            <div>
+                <label for="inventory_number">Número de bien:</label>
+                <input type="number" id="inventory_number" name="inventory_number">
+            </div>
+            <br>
+
+            <div class="container__button">
+                <button type="button" onclick="guardarDatos()">Guardar</button>
+                <button type="button" onclick="HTMLtoPDF()">Mostrar resultados</button>
+            </div>
+            
+            
+        </form>
+
+        <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by 
+            <a href="#">TicoGeek</a>.
+               </p>
+             </div>
+    </main>
+
+    <script src="./js/jspdf.js"></script>
+    <script src="./js/jquery-2.1.3.js"></script>
+    <script src="./js/pdfFromHTML.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="ruta-a-typo.js"></script>
