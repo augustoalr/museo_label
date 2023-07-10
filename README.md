@@ -18,7 +18,7 @@ Permite al usuario ingresar la información de cada obra y generar rótulos pers
 
 ## Uso
 
-1. Abre el archivo `index.html` en tu navegador web.
+1. Ingrese en el siguiente link https://augustoalr.github.io/museo_label/
 2. Completa el formulario con los datos de la obra de arte.
 3. Haz clic en el botón "Guardar" para almacenar los datos del rótulo actual.
 4. Completa el formulario nuevamente para ingresar los datos del siguiente rótulo (opcional).
