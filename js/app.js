@@ -1,10 +1,17 @@
+
+
+
+// Función para que la primera palabra que se escriba en el input sea en mayúscula
 function capitalizeFirstLetter(input) {
   let value = input.value;
   input.value = value.charAt(0).toUpperCase() + value.slice(1);
 }
 
+
+
 var num_rotulos = 0; // Número de rótulos guardados
 var datos_rotulos = []; // Arreglo para almacenar los datos de los rótulos
+
 
 function guardarDatos() {
   // Obtener los valores del formulario
@@ -14,6 +21,7 @@ function guardarDatos() {
   var technique = document.getElementById("technique").value;
   var measurements = document.getElementById("measurements").value;
   var inventory_number = document.getElementById("inventory_number").value;
+
 
   // Validar que se hayan ingresado todos los campos obligatorios
   if (author && title && date && technique && measurements && inventory_number) {
@@ -27,7 +35,8 @@ function guardarDatos() {
       date: date,
       technique: technique,
       measurements: measurements,
-      inventory_number: inventory_number
+      inventory_number: inventory_number,
+
     });
 
     // Limpiar los campos del formulario
@@ -38,11 +47,113 @@ function guardarDatos() {
     document.getElementById("measurements").value = "";
     document.getElementById("inventory_number").value = "";
 
+
     // Mostrar mensaje de éxito
     alert("Datos guardados correctamente.");
   } else {
     alert("Por favor, complete todos los campos.");
   }
+
+ 
+
+  // Actualizar la vista previa de los rótulos
+  actualizarVistaPrevia();
+}
+
+
+function actualizarVistaPrevia() {
+  var rotulosPreviewDiv = document.querySelector('.rotulos-preview');
+  rotulosPreviewDiv.innerHTML = '';
+
+
+  for (var i = 0; i < num_rotulos; i++) {
+      var rotulo = datos_rotulos[i];
+
+      var rotuloDiv = document.createElement('div');
+      rotuloDiv.classList.add('rotulo-preview');
+
+      // Contenedor para el texto "Rótulo X" y el enlace "Modificar"
+      var contenedorRotulo = document.createElement('div');
+      contenedorRotulo.classList.add('contenedor-rotulo');
+
+      // Texto "Rótulo X" con descripción al pasar el cursor
+      var textoRotulo = document.createElement('span');
+      textoRotulo.textContent = 'Rótulo ' + (i + 1);
+      textoRotulo.title =  rotulo.inventory_number + ' - ' + rotulo.author + ' - ' + rotulo.title + ' - ' + rotulo.date + ' - ' + rotulo.technique + ' - ' + rotulo.measurements;
+      contenedorRotulo.appendChild(textoRotulo);
+
+      // Enlace "Modificar"
+      var modificarEnlace = document.createElement('a');
+      modificarEnlace.innerHTML = '<i class="fa-solid fa-pencil fa-beat" style="color: #45a049;"></i>';
+      modificarEnlace.href = 'javascript:void(0);'; // Usar "javascript:void(0);" para evitar que se recargue la página
+      modificarEnlace.classList.add('modificar-enlace');
+      modificarEnlace.addEventListener('click', function() {
+          modificarRotulo(this);
+      });
+
+      contenedorRotulo.appendChild(modificarEnlace);
+      // rotuloDiv.appendChild(contenedorRotulo);
+      // rotulosPreviewDiv.appendChild(rotuloDiv);
+
+      // Enlace "Eliminar"
+    var eliminarEnlace = document.createElement('a');
+    // eliminarEnlace.innerHTML = 'Eliminar';
+    eliminarEnlace.innerHTML = '<i class="fas fa-trash-alt"></i>';
+    
+    eliminarEnlace.href = 'javascript:void(0);'; // Usar "javascript:void(0);" para evitar que se recargue la página
+    eliminarEnlace.classList.add('eliminar-enlace');
+    eliminarEnlace.dataset.rotuloIndex = i;
+    eliminarEnlace.addEventListener('click', function() {
+      eliminarRotulo(this);
+    });
+    contenedorRotulo.appendChild(eliminarEnlace);
+
+    rotuloDiv.appendChild(contenedorRotulo);
+    rotulosPreviewDiv.appendChild(rotuloDiv);
+
+  }
+}
+
+
+
+
+function eliminarRotulo(botonEliminar) {
+
+  // Obtener el índice del rótulo
+  var rotulo = botonEliminar.parentNode.parentNode;
+  var indice = Array.from(rotulo.parentNode.children).indexOf(rotulo);
+  
+  // Eliminar el rótulo del array
+  datos_rotulos.splice(indice, 1);
+  num_rotulos--;
+
+  // Actualizar la vista
+  actualizarVistaPrevia(); 
+
+}
+
+
+
+function modificarRotulo(enlaceModificar) {
+    var rotuloPreview = enlaceModificar.parentNode.parentNode;
+    var indice = Array.from(rotuloPreview.parentNode.children).indexOf(rotuloPreview);
+
+    var rotulo = datos_rotulos[indice];
+
+    // Actualizar los campos del formulario con los datos del rótulo
+    document.getElementById('author').value = rotulo.author;
+    document.getElementById('title').value = rotulo.title;
+    document.getElementById('date').value = rotulo.date;
+    document.getElementById('technique').value = rotulo.technique;
+    document.getElementById('measurements').value = rotulo.measurements;
+    document.getElementById('inventory_number').value = rotulo.inventory_number;
+
+    // Eliminar el rótulo y sus datos del array
+    datos_rotulos.splice(indice, 1);
+    num_rotulos--;
+
+    // Actualizar la vista previa de los rótulos
+    actualizarVistaPrevia();
 }
 
 
@@ -58,10 +169,12 @@ function HTMLtoPDF() {
   var line_width = 0.1; // Ancho de la línea
   var line_color = "#000"; // Color de la línea
 
-  // Calculamos la cantidad de filas y columnas necesarias
+  //Calculamos la cantidad de filas y columnas necesarias
   var num_filas = Math.ceil(num_rotulos / 2);
   var num_columnas = num_rotulos >= 2 ? 2 : num_rotulos;
 
+  
+ 
 
   // Generar cada rótulo con la información almacenada
   for (var i = 0; i < num_rotulos; i++) {
@@ -92,10 +205,14 @@ function HTMLtoPDF() {
 
     // Escribir los datos del rótulo
     doc.setFontSize(12);
-  
+
     var text_x = x + 13; // Posición horizontal del texto
     var text_y = y + 16; // Posición vertical del texto
     // var text_options = { align: "center" }; // Opciones de alineación para el texto
+
+
+
+
     doc.setFontType("bold");
     doc.text(rotulo.author, text_x, text_y);
     doc.setFontType("italic")
@@ -103,15 +220,16 @@ function HTMLtoPDF() {
     doc.setFontType("normal");
     doc.text(rotulo.date, text_x, text_y + 12);
     doc.text(rotulo.technique, text_x, text_y + 18);
+
     doc.text(rotulo.measurements, text_x, text_y + 24);
     doc.text(rotulo.inventory_number, text_x + 63, text_y + 36);
 
-
+    
 
 
   }
 
-  
+
 
   // Obtenemos la representación en formato data URI del PDF
   var pdfData = doc.output('datauristring');

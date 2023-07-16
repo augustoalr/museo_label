@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="./styles.css">
     <title>Generador de rótulos</title>
@@ -12,8 +13,10 @@
 
 <body>
     <main class="container" id="HTMLtoPDF">
-        <h1 class="app-name">MuseoLabel <span>V1.0</span></h1>
-
+        <div class="logo">
+            <img src="./img/logo (1).png" alt="">
+        </div>
+        <div class="rotulos-preview"></div> <!-- Div para la vista previa de los rótulos -->
         <form class="form">
             <div>
                 <label for="author">Autor:</label>
@@ -30,15 +33,7 @@
             </div>
             <div class="container__technique">
                 <label for="technique">Técnica:</label>
-                <select name="technique" id="technique" class="technique">
-                    <option value="">Seleccionar técnica</option>
-                    <option value="Óleo sobre tela">Óleo sobre tela</option>
-                    <option value="Acrílico">Acrílico</option>
-                    <option value="Serigrafía">Serigrafía</option>
-                    <option value="Lápiz">Lápiz</option>
-                    <option value="Litografía">Litografía</option>
-                </select>
-                <!-- <input type="text" id="technique" name="technique" oninput="capitalizeFirstLetter(this)" > -->
+                <input type="text" id="technique" name="technique"  oninput="capitalizeFirstLetter(this)" >
             </div>
             <div>
                 <label for="measurements">Medidas:</label>
@@ -54,14 +49,29 @@
                 <button type="button" onclick="guardarDatos()">Guardar</button>
                 <button type="button" onclick="HTMLtoPDF()">Mostrar resultados</button>
             </div>
-            
-            
+   
         </form>
+
+
+
+        <!-- <div class="modal-overlay"></div>
+        <div class="modal">
+            <div class="modal-content">
+                <div class="rotulo-content"></div>
+                <button class="modal-close" onclick="cerrarModal()">Cerrar</button>
+            </div>
+            
+        </div> -->
+
+
 
         <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by 
             <a href="#">TicoGeek</a>.
                </p>
              </div>
+
+
+             
     </main>
 
     <script src="./js/jspdf.js"></script>
