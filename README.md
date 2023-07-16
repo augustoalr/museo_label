@@ -1,7 +1,7 @@
 # Generador de Rótulos
 
-Este proyecto es un generador de rótulos en formato PDF para obras de arte. 
-Permite al usuario ingresar la información de cada obra y generar rótulos personalizados con los datos proporcionados.
+Este proyecto es un generador de rótulos / fichas técnicas o identificador en formato PDF para obras de arte. 
+Permite al usuario ingresar la información de cada obra y generar fichas técnicas personalizadas con los datos proporcionados.
 
 ## Características
 
@@ -22,7 +22,7 @@ Permite al usuario ingresar la información de cada obra y generar rótulos pers
 2. Completa el formulario con los datos de la obra de arte.
 3. Haz clic en el botón "Guardar" para almacenar los datos del rótulo actual.
 4. Completa el formulario nuevamente para ingresar los datos del siguiente rótulo (opcional).
-5. Una vez que hayas ingresado todos los rótulos deseados, haz clic en el botón "Mostrar resultado".
+5. Una vez que hayas ingresado todos los rótulos deseados (hasta 8), haz clic en el botón "Mostrar resultado".
 6. Se generará un archivo PDF con los rótulos en una nueva pestaña o ventana del navegador.
 7. Puedes guardar el archivo PDF generado o imprimirlo según tus necesidades.
 
