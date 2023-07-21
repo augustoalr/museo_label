@@ -92,8 +92,7 @@ function actualizarVistaPrevia() {
       });
 
       contenedorRotulo.appendChild(modificarEnlace);
-      // rotuloDiv.appendChild(contenedorRotulo);
-      // rotulosPreviewDiv.appendChild(rotuloDiv);
+      
 
       // Enlace "Eliminar"
     var eliminarEnlace = document.createElement('a');
