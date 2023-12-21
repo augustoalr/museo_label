@@ -88,6 +88,20 @@ function guardarDatos() {
     newMeasurements = "\n" + measurements;
   }
 
+  
+  // Verificar si la longitud de la técnica excede el límite
+  if (technique.length > 38) {
+    // Insertar un salto de línea después de los primeros 38 caracteres
+    newTechnique = technique.substring(0, 38) + "\n" + technique.substring(38);
+    newMeasurements = "\n" + measurements;
+    
+    // Si la longitud del campo technique supera los 38 caracteres y también la suma de title y technique es mayor a 76, entonces insertar un salto de línea
+    if (newTechnique.length > 38 && (newTitle.length + newTechnique.length) > 76) {
+      newMeasurements = "\n" + newMeasurements;
+      newTechnique = "\n" + newTechnique;
+    }
+  }
+
   if (author && newTitle && newDate && newTechnique && newMeasurements && inventory_number) {
     num_rotulos++;
 
